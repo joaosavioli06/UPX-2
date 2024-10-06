@@ -1,6 +1,9 @@
 # Usina de Projetos Experimentais 2 - Grupo ODSCoders
-Neste repositório você encontrará o projeto do 2º semestre da disciplina de UPX - 2 (Usina de Projetos Experimentais 1) do grupo ODSCoders da turma A de Análise e Desenvolvimento de Sistemas EAD do Centro Universitário Facens.
+Neste repositório você encontrará o projeto do 2º semestre da disciplina de UPX - 2 (Usina de Projetos Experimentais 2) do grupo ODSCoders da turma A de Análise e Desenvolvimento de Sistemas EAD do Centro Universitário Facens.
 
 ## Integrantes
-João Gabriel Savioli - RA: 247617
-Luiz Fernando Brisola - RA: 249429
+Arthur Cezar Rivaroli - RA: <br>
+João Gabriel Savioli - RA: 247617 <br>
+Karla Alejandra Acosta Barrios - RA: 249369 <br>
+Luiz Fernando Brisola - RA: 249429 <br>
+Nathália Top Hondei- RA: 237298 <br>
