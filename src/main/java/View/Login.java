@@ -33,6 +33,7 @@ public class Login extends javax.swing.JFrame {
         LabelFundo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         TextUsuario.addActionListener(new java.awt.event.ActionListener() {
@@ -54,7 +55,7 @@ public class Login extends javax.swing.JFrame {
         getContentPane().add(LabelSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 430, 140, -1));
 
         LabelFundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/login.png"))); // NOI18N
-        getContentPane().add(LabelFundo, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 0, -1, 666));
+        getContentPane().add(LabelFundo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1170, 666));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
