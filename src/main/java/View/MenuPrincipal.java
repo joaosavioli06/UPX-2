@@ -27,10 +27,28 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private void initComponents() {
 
         LabelFundo = new javax.swing.JLabel();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenuCadastro = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         LabelFundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/menu_principal.jpg"))); // NOI18N
+
+        jMenuCadastro.setText("Cadastro");
+
+        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icone_aparelho.png"))); // NOI18N
+        jMenuItem1.setText("Aparelho");
+        jMenuItem1.setToolTipText("");
+        jMenuCadastro.add(jMenuItem1);
+
+        jMenuBar1.add(jMenuCadastro);
+
+        jMenu2.setText("Edit");
+        jMenuBar1.add(jMenu2);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -83,5 +101,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel LabelFundo;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenu jMenuCadastro;
+    private javax.swing.JMenuItem jMenuItem1;
     // End of variables declaration//GEN-END:variables
 }
