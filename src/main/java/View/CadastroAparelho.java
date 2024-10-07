@@ -8,12 +8,12 @@ package View;
  *
  * @author savio
  */
-public class MenuPrincipal extends javax.swing.JFrame {
+public class CadastroAparelho extends javax.swing.JFrame {
 
     /**
-     * Creates new form MenuPrincipal
+     * Creates new form CadastroAparelho
      */
-    public MenuPrincipal() {
+    public CadastroAparelho() {
         initComponents();
     }
 
@@ -27,47 +27,24 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private void initComponents() {
 
         LabelFundo = new javax.swing.JLabel();
-        jMenuBar1 = new javax.swing.JMenuBar();
-        jMenuCadastro = new javax.swing.JMenu();
-        jMenuItemAparelho = new javax.swing.JMenuItem();
-        jMenuItemUsers = new javax.swing.JMenuItem();
-        jMenuOperação = new javax.swing.JMenu();
-        jMenuRelatório = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        LabelFundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/menu_principal.jpg"))); // NOI18N
-
-        jMenuCadastro.setText("Cadastro");
-
-        jMenuItemAparelho.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/icone_aparelho.png"))); // NOI18N
-        jMenuItemAparelho.setText("Aparelho");
-        jMenuItemAparelho.setToolTipText("");
-        jMenuCadastro.add(jMenuItemAparelho);
-
-        jMenuItemUsers.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/icone_usuario.png"))); // NOI18N
-        jMenuItemUsers.setText("Usuários");
-        jMenuCadastro.add(jMenuItemUsers);
-
-        jMenuBar1.add(jMenuCadastro);
-
-        jMenuOperação.setText("Operação");
-        jMenuBar1.add(jMenuOperação);
-
-        jMenuRelatório.setText("Relatório");
-        jMenuBar1.add(jMenuRelatório);
-
-        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(LabelFundo, javax.swing.GroupLayout.PREFERRED_SIZE, 1269, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(129, 129, 129)
+                .addComponent(LabelFundo)
+                .addContainerGap(271, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(LabelFundo)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(137, 137, 137)
+                .addComponent(LabelFundo)
+                .addContainerGap(163, Short.MAX_VALUE))
         );
 
         pack();
@@ -90,31 +67,25 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MenuPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CadastroAparelho.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MenuPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CadastroAparelho.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MenuPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CadastroAparelho.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MenuPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CadastroAparelho.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MenuPrincipal().setVisible(true);
+                new CadastroAparelho().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel LabelFundo;
-    private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenu jMenuCadastro;
-    private javax.swing.JMenuItem jMenuItemAparelho;
-    private javax.swing.JMenuItem jMenuItemUsers;
-    private javax.swing.JMenu jMenuOperação;
-    private javax.swing.JMenu jMenuRelatório;
     // End of variables declaration//GEN-END:variables
 }
