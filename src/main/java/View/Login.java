@@ -27,7 +27,8 @@ public class Login extends javax.swing.JFrame {
     private void initComponents() {
 
         TextUsuario = new javax.swing.JTextField();
-        TextSenha = new javax.swing.JTextField();
+        SenhaUsuario = new javax.swing.JPasswordField();
+        BtnLogar = new javax.swing.JButton();
         LabelUsuario = new javax.swing.JLabel();
         LabelSenha = new javax.swing.JLabel();
         LabelFundo = new javax.swing.JLabel();
@@ -36,13 +37,26 @@ public class Login extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        TextUsuario.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         TextUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 TextUsuarioActionPerformed(evt);
             }
         });
         getContentPane().add(TextUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 390, 150, 30));
-        getContentPane().add(TextSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 470, 150, 30));
+
+        SenhaUsuario.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        getContentPane().add(SenhaUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 470, 150, 30));
+
+        BtnLogar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        BtnLogar.setText("Login");
+        BtnLogar.setBorder(null);
+        BtnLogar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnLogarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(BtnLogar, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 530, 90, 30));
 
         LabelUsuario.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         LabelUsuario.setForeground(new java.awt.Color(255, 255, 255));
@@ -63,6 +77,10 @@ public class Login extends javax.swing.JFrame {
     private void TextUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextUsuarioActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_TextUsuarioActionPerformed
+
+    private void BtnLogarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnLogarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BtnLogarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -100,10 +118,11 @@ public class Login extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BtnLogar;
     private javax.swing.JLabel LabelFundo;
     private javax.swing.JLabel LabelSenha;
     private javax.swing.JLabel LabelUsuario;
-    private javax.swing.JTextField TextSenha;
+    private javax.swing.JPasswordField SenhaUsuario;
     private javax.swing.JTextField TextUsuario;
     // End of variables declaration//GEN-END:variables
 }
