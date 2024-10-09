@@ -44,14 +44,15 @@ public class CadastroDispositivo extends javax.swing.JFrame {
         LabelEstado = new javax.swing.JLabel();
         LabelObservações = new javax.swing.JLabel();
         BoxVolts = new javax.swing.JComboBox<>();
-        jSpinner1 = new javax.swing.JSpinner();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        SpinnerData = new javax.swing.JSpinner();
+        BoxEstado = new javax.swing.JComboBox<>();
+        ScrollObs = new javax.swing.JScrollPane();
+        ScrollTable = new javax.swing.JScrollPane();
+        Table = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         PainelCadastro.setBackground(new java.awt.Color(204, 204, 204));
@@ -62,6 +63,11 @@ public class CadastroDispositivo extends javax.swing.JFrame {
             }
         });
 
+        TextWatts.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                TextWattsFocusLost(evt);
+            }
+        });
         TextWatts.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 TextWattsActionPerformed(evt);
@@ -112,15 +118,11 @@ public class CadastroDispositivo extends javax.swing.JFrame {
 
         BoxVolts.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "110V", "220V", "Bivolt" }));
 
-        jSpinner1.setModel(new javax.swing.SpinnerDateModel(new java.util.Date(), null, null, java.util.Calendar.MONTH));
+        SpinnerData.setModel(new javax.swing.SpinnerDateModel(new java.util.Date(1728462849880L), null, null, java.util.Calendar.YEAR));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ativo", "Inativo" }));
+        BoxEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ativo", "Inativo" }));
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        Table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null, null, null},
@@ -128,10 +130,10 @@ public class CadastroDispositivo extends javax.swing.JFrame {
                 {null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4", "Title 5", "Title 6", "Title 7", "Title 8", "Title 9", "Title 10"
+                "ID", "Nome", "Tipo", "Potência (Watts)", "Voltagem", "Data", "Horas", "Localização", "Estado", "Observações"
             }
         ));
-        jScrollPane2.setViewportView(jTable1);
+        ScrollTable.setViewportView(Table);
 
         javax.swing.GroupLayout PainelCadastroLayout = new javax.swing.GroupLayout(PainelCadastro);
         PainelCadastro.setLayout(PainelCadastroLayout);
@@ -156,7 +158,7 @@ public class CadastroDispositivo extends javax.swing.JFrame {
                         .addComponent(TextDispositivo)
                         .addComponent(TextTipo)
                         .addComponent(TextWatts)
-                        .addComponent(jSpinner1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)
+                        .addComponent(SpinnerData, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)
                         .addComponent(TextId))
                     .addGroup(PainelCadastroLayout.createSequentialGroup()
                         .addGap(62, 62, 62)
@@ -169,7 +171,7 @@ public class CadastroDispositivo extends javax.swing.JFrame {
                             .addGroup(PainelCadastroLayout.createSequentialGroup()
                                 .addComponent(LabelEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(134, 134, 134)
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(BoxEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(PainelCadastroLayout.createSequentialGroup()
                         .addGroup(PainelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -180,19 +182,26 @@ public class CadastroDispositivo extends javax.swing.JFrame {
                                 .addGroup(PainelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(TextLocal, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(TextHoras, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(jScrollPane1))
+                            .addComponent(ScrollObs))
                         .addGap(33, 33, 33))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PainelCadastroLayout.createSequentialGroup()
                 .addContainerGap(37, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 1100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33))
+                .addGroup(PainelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PainelCadastroLayout.createSequentialGroup()
+                        .addComponent(ScrollTable, javax.swing.GroupLayout.PREFERRED_SIZE, 1100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(33, 33, 33))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PainelCadastroLayout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(544, 544, 544))))
         );
         PainelCadastroLayout.setVerticalGroup(
             PainelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PainelCadastroLayout.createSequentialGroup()
                 .addGroup(PainelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(PainelCadastroLayout.createSequentialGroup()
-                        .addGap(86, 86, 86)
+                        .addGap(30, 30, 30)
+                        .addComponent(jLabel1)
+                        .addGap(40, 40, 40)
                         .addGroup(PainelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(TextId, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(LabelHoras)
@@ -211,13 +220,13 @@ public class CadastroDispositivo extends javax.swing.JFrame {
                     .addComponent(LabelTipo)
                     .addComponent(TextDispositivo, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(LabelEstado)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(BoxEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(PainelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PainelCadastroLayout.createSequentialGroup()
                         .addComponent(LabelObservações)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(ScrollObs, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18))
                     .addGroup(PainelCadastroLayout.createSequentialGroup()
                         .addGroup(PainelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -229,11 +238,11 @@ public class CadastroDispositivo extends javax.swing.JFrame {
                             .addComponent(BoxVolts, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(PainelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(SpinnerData, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(LabelData))
                         .addGap(39, 39, 39)))
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(52, Short.MAX_VALUE))
+                .addComponent(ScrollTable, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         getContentPane().add(PainelCadastro, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1170, 620));
@@ -256,6 +265,17 @@ public class CadastroDispositivo extends javax.swing.JFrame {
     private void TextLocalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextLocalActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_TextLocalActionPerformed
+
+    private void TextWattsFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TextWattsFocusLost
+     // Obtém o valor do campo de texto e remove espaços em branco
+    String valor = TextWatts.getText().trim();
+
+    // Verifica se o valor não está vazio e se já não contém o "W"
+    if (!valor.isEmpty() && !valor.endsWith("W")) {
+        TextWatts.setText(valor + "W");
+    }
+    
+    }//GEN-LAST:event_TextWattsFocusLost
 
     /**
      * @param args the command line arguments
@@ -294,6 +314,7 @@ public class CadastroDispositivo extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> BoxEstado;
     private javax.swing.JComboBox<String> BoxVolts;
     private javax.swing.JLabel LabelData;
     private javax.swing.JLabel LabelDispositivo;
@@ -306,17 +327,16 @@ public class CadastroDispositivo extends javax.swing.JFrame {
     private javax.swing.JLabel LabelVolts;
     private javax.swing.JLabel LabelWatts;
     private javax.swing.JPanel PainelCadastro;
+    private javax.swing.JScrollPane ScrollObs;
+    private javax.swing.JScrollPane ScrollTable;
+    private javax.swing.JSpinner SpinnerData;
+    private javax.swing.JTable Table;
     private javax.swing.JTextField TextDispositivo;
     private javax.swing.JTextField TextHoras;
     private javax.swing.JTextField TextId;
     private javax.swing.JTextField TextLocal;
     private javax.swing.JTextField TextTipo;
     private javax.swing.JTextField TextWatts;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JSpinner jSpinner1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }
