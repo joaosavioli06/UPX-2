@@ -4,6 +4,14 @@
  */
 package View;
 
+import javax.swing.JSpinner;
+import javax.swing.SpinnerDateModel;
+import javax.swing.*;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+import javax.swing.text.PlainDocument;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 /**
  *
  * @author savio
@@ -49,7 +57,7 @@ public class CadastroDispositivo extends javax.swing.JFrame {
         ScrollTable = new javax.swing.JScrollPane();
         Table = new javax.swing.JTable();
         SubmitiBtn = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        ScrollObs = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -119,7 +127,8 @@ public class CadastroDispositivo extends javax.swing.JFrame {
 
         BoxVolts.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "110V", "220V", "Bivolt" }));
 
-        SpinnerData.setModel(new javax.swing.SpinnerDateModel(new java.util.Date(1728462849880L), null, null, java.util.Calendar.YEAR));
+        SpinnerData.setModel(new javax.swing.SpinnerDateModel());
+        SpinnerData.setEditor(new javax.swing.JSpinner.DateEditor(SpinnerData, "dd/MM/yyyy"));
 
         BoxEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ativo", "Inativo" }));
 
@@ -142,7 +151,7 @@ public class CadastroDispositivo extends javax.swing.JFrame {
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        ScrollObs.setViewportView(jTextArea1);
 
         javax.swing.GroupLayout PainelCadastroLayout = new javax.swing.GroupLayout(PainelCadastro);
         PainelCadastro.setLayout(PainelCadastroLayout);
@@ -178,24 +187,21 @@ public class CadastroDispositivo extends javax.swing.JFrame {
                         .addGap(67, 67, 67)
                         .addGroup(PainelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(PainelCadastroLayout.createSequentialGroup()
+                                .addComponent(LabelEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(145, 145, 145)
+                                .addComponent(BoxEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(LabelObservações, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(PainelCadastroLayout.createSequentialGroup()
                                 .addGroup(PainelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(PainelCadastroLayout.createSequentialGroup()
-                                        .addComponent(LabelEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(145, 145, 145)
-                                        .addComponent(BoxEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(LabelObservações, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(PainelCadastroLayout.createSequentialGroup()
-                                        .addGroup(PainelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(PainelCadastroLayout.createSequentialGroup()
-                                                .addGap(6, 6, 6)
-                                                .addComponent(LabelHoras, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addComponent(LabelLocal, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(PainelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(TextLocal, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(TextHoras, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(jScrollPane1)))
+                                        .addGap(6, 6, 6)
+                                        .addComponent(LabelHoras, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(LabelLocal, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(PainelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(TextLocal, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(TextHoras, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(ScrollObs)))
                     .addComponent(ScrollTable, javax.swing.GroupLayout.PREFERRED_SIZE, 1100, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(33, 33, 33))
             .addGroup(PainelCadastroLayout.createSequentialGroup()
@@ -244,7 +250,7 @@ public class CadastroDispositivo extends javax.swing.JFrame {
                     .addGroup(PainelCadastroLayout.createSequentialGroup()
                         .addComponent(LabelObservações)
                         .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(ScrollObs, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(28, 28, 28)
                 .addComponent(SubmitiBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
@@ -334,6 +340,7 @@ public class CadastroDispositivo extends javax.swing.JFrame {
     private javax.swing.JLabel LabelVolts;
     private javax.swing.JLabel LabelWatts;
     private javax.swing.JPanel PainelCadastro;
+    private javax.swing.JScrollPane ScrollObs;
     private javax.swing.JScrollPane ScrollTable;
     private javax.swing.JSpinner SpinnerData;
     private javax.swing.JButton SubmitiBtn;
@@ -344,7 +351,6 @@ public class CadastroDispositivo extends javax.swing.JFrame {
     private javax.swing.JTextField TextLocal;
     private javax.swing.JTextField TextTipo;
     private javax.swing.JTextField TextWatts;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
     // End of variables declaration//GEN-END:variables
 }

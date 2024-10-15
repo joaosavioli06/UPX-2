@@ -78,31 +78,26 @@
                           <EmptySpace min="-2" pref="67" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
+                                  <Component id="LabelEstado" min="-2" pref="214" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="145" max="-2" attributes="0"/>
+                                  <Component id="BoxEstado" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Component id="LabelObservações" min="-2" pref="144" max="-2" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" attributes="0">
-                                          <Component id="LabelEstado" min="-2" pref="214" max="-2" attributes="0"/>
-                                          <EmptySpace min="-2" pref="145" max="-2" attributes="0"/>
-                                          <Component id="BoxEstado" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+                                          <Component id="LabelHoras" min="-2" pref="272" max="-2" attributes="0"/>
                                       </Group>
-                                      <Component id="LabelObservações" min="-2" pref="144" max="-2" attributes="0"/>
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Group type="102" attributes="0">
-                                                  <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
-                                                  <Component id="LabelHoras" min="-2" pref="272" max="-2" attributes="0"/>
-                                              </Group>
-                                              <Component id="LabelLocal" alignment="0" min="-2" pref="305" max="-2" attributes="0"/>
-                                          </Group>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="TextLocal" min="-2" pref="188" max="-2" attributes="0"/>
-                                              <Component id="TextHoras" min="-2" pref="188" max="-2" attributes="0"/>
-                                          </Group>
-                                      </Group>
+                                      <Component id="LabelLocal" alignment="0" min="-2" pref="305" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace max="32767" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="TextLocal" min="-2" pref="188" max="-2" attributes="0"/>
+                                      <Component id="TextHoras" min="-2" pref="188" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
-                              <Component id="jScrollPane1" max="32767" attributes="0"/>
+                              <Component id="ScrollObs" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <Component id="ScrollTable" min="-2" pref="1100" max="-2" attributes="0"/>
@@ -166,7 +161,7 @@
                       <Group type="102" attributes="0">
                           <Component id="LabelObservações" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="jScrollPane1" min="-2" pref="92" max="-2" attributes="0"/>
+                          <Component id="ScrollObs" min="-2" pref="92" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
@@ -303,8 +298,8 @@
         </Component>
         <Component class="javax.swing.JSpinner" name="SpinnerData">
           <Properties>
-            <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
-              <SpinnerModel initial="1728462849880" stepSize="1" type="date"/>
+            <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="new javax.swing.SpinnerDateModel());&#xa;SpinnerData.setEditor(new javax.swing.JSpinner.DateEditor(SpinnerData, &quot;dd/MM/yyyy&quot;)" type="code"/>
             </Property>
           </Properties>
           <AuxValues>
@@ -366,7 +361,7 @@
             </Property>
           </Properties>
         </Component>
-        <Container class="javax.swing.JScrollPane" name="jScrollPane1">
+        <Container class="javax.swing.JScrollPane" name="ScrollObs">
           <AuxValues>
             <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
           </AuxValues>
