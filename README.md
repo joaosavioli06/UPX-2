@@ -3,6 +3,7 @@ Neste repositório você encontrará o projeto do 2º semestre da disciplina de 
 
 ## Integrantes
 Arthur Cezar Rivaroli - RA: <br>
+Guilherme Gravalos Morais - RA: 249588<br>
 João Gabriel Savioli - RA: 247617 <br>
 Karla Alejandra Acosta Barrios - RA: 249369 <br>
 Luiz Fernando Brisola - RA: 249429 <br>
