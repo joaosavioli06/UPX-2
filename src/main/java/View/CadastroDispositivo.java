@@ -126,6 +126,11 @@ public class CadastroDispositivo extends javax.swing.JFrame {
         LabelObservações.setText("Observações");
 
         BoxVolts.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "110V", "220V", "Bivolt" }));
+        BoxVolts.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BoxVoltsActionPerformed(evt);
+            }
+        });
 
         SpinnerData.setModel(new javax.swing.SpinnerDateModel());
         SpinnerData.setEditor(new javax.swing.JSpinner.DateEditor(SpinnerData, "dd/MM/yyyy"));
@@ -289,6 +294,10 @@ public class CadastroDispositivo extends javax.swing.JFrame {
     }
     
     }//GEN-LAST:event_TextWattsFocusLost
+
+    private void BoxVoltsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BoxVoltsActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BoxVoltsActionPerformed
 
     /**
      * @param args the command line arguments
