@@ -4,7 +4,7 @@
  */
 package Model;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 /**
  *
@@ -19,17 +19,17 @@ public class Dispositivo {
     private String nome; // Nome do dispositivo
     private String tipo; // Tipo do dispositivo
     private int potencia; // Potência em Watts
-    private String voltagem; // tem 3 opções predefinidas (110v, 220v e bivolt), pode usar uma String para armazenar o valor selecionado.
-    private Date data; // Data de aquisição
+    private Voltagem voltagem; // Tipo enum
+    private LocalDate data; // Data de aquisição
     private float horas; // Horas de uso diárias estimadas (float)
     private String localizacao; // Localização (cômodo)
-    private String estado; // como existem apenas duas opções predefinidas (ativo, inativo), pode usar uma String para armazenar o estado.
+    private Estado estado; // Tipo enum 
     private String obs; // Para armazenar texto adicional sobre o dispositivo
 
     
     // Cosntrutor abaixo
     
-    public Dispositivo(int id, String nome, String tipo, int potencia, String voltagem, Date data, float horas, String localizacao, String estado, String obs) {
+    public Dispositivo(int id, String nome, String tipo, int potencia, Voltagem voltagem, LocalDate data, float horas, String localizacao, Estado estado, String obs) {
         this.id = id;
         this.nome = nome;
         this.tipo = tipo;
@@ -42,6 +42,42 @@ public class Dispositivo {
         this.obs = obs;
     }
 
+    // Criando enumerations para a seleção de Volts e Estado
+    
+     public enum Voltagem {
+        V110("110v"),
+        V220("220v"),
+        BIVOLT("Bivolt");
+
+        private final String descricao;
+
+        Voltagem(String descricao) {
+            this.descricao = descricao;
+        }
+
+        @Override
+        public String toString() {
+            return descricao;
+        }
+    }
+
+    public enum Estado {
+        ATIVO("Ativo"),
+        INATIVO("Inativo");
+
+        private final String descricao;
+
+        Estado(String descricao) {
+            this.descricao = descricao;
+        }
+
+        @Override
+        public String toString() {
+            return descricao;
+        }
+    
+    }
+    
     // Criando apenas um Getter para o ID, visto que é uma varáivel que não vai ser modificada
     
     public int getId() {
@@ -49,6 +85,13 @@ public class Dispositivo {
     }
 
     // Getters e Setters abaixo do restante
+    
+    // Getters e setters são métodos especiais usados em programação orientada a objetos para acessar (get) e modificar (set) os atributos privados de uma classe.
+    
+    // O método getter é utilizado para retornar o valor de um atributo privado. Ele permite que outras classes acessem os valores dos atributos sem expô-los diretamente.
+    
+    /* O método setter é utilizado para modificar o valor de um atributo privado. Ele permite que outras classes alterem os valores dos atributos, mas de maneira controlada, 
+    geralmente com a possibilidade de realizar verificações ou validações antes de modificar o valor. */
     
     public String getNome() {
         return nome;
@@ -74,19 +117,19 @@ public class Dispositivo {
         this.potencia = potencia;
     }
 
-    public String getVoltagem() {
+    public Voltagem getVoltagem() {
         return voltagem;
     }
 
-    public void setVoltagem(String voltagem) {
+    public void setVoltagem(Voltagem voltagem) {
         this.voltagem = voltagem;
     }
 
-    public Date getData() {
+    public LocalDate getData() {
         return data;
     }
 
-    public void setData(Date data) {
+    public void setData(LocalDate data) {
         this.data = data;
     }
 
@@ -106,11 +149,11 @@ public class Dispositivo {
         this.localizacao = localizacao;
     }
 
-    public String getEstado() {
+    public Estado getEstado() {
         return estado;
     }
 
-    public void setEstado(String estado) {
+    public void setEstado(Estado estado) {
         this.estado = estado;
     }
 
@@ -121,10 +164,6 @@ public class Dispositivo {
     public void setObs(String obs) {
         this.obs = obs;
     }
-    
-    
-    
-    
     
 }
 
