@@ -8,6 +8,7 @@ import java.time.LocalDate;
 import Model.Dispositivo;
 import Model.Dispositivo.Estado;
 import Model.Dispositivo.Voltagem;
+import Model.Usuario;
 
 /**
  *
@@ -16,7 +17,6 @@ import Model.Dispositivo.Voltagem;
 public class Main {
     
     public static void main(String[] args){
-    
     
     Dispositivo equipamento = new Dispositivo(
             1, 
@@ -30,8 +30,6 @@ public class Main {
             Estado.ATIVO, 
             "Nenhuma");
 
-    
-    
     System.out.println(equipamento.getId());
     System.out.println(equipamento.getNome());
     System.out.println(equipamento.getTipo());
@@ -42,6 +40,18 @@ public class Main {
     System.out.println(equipamento.getLocalizacao());
     System.out.println(equipamento.getObs());
     
+    Usuario usuario = new Usuario(1, "joao.savioli", "ninjated10");
+    
+    System.out.println(usuario.getId());
+    System.out.println(usuario.getNome());
+    
+    String senhaParaVerificar = "ninjated10"; // Pode ser um input do usuário
+    if (usuario.verificarSenha(senhaParaVerificar)) {
+    System.out.println("Senha correta!");
+        } else {
+    System.out.println("Senha incorreta!");
+}
+    System.out.println(usuario);
     }
     
 }
