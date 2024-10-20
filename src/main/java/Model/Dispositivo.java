@@ -5,6 +5,7 @@
 package Model;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 /**
  *
@@ -129,10 +130,15 @@ public class Dispositivo {
         return data;
     }
 
+    public String getDataFormatada(){
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        return data.format(formatter);
+    } //´feito para retornar data no formato BR = dd/mm/yyyy
+    
     public void setData(LocalDate data) {
         this.data = data;
     }
-
+  
     public float getHoras() {
         return horas;
     }

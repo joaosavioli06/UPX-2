@@ -17,8 +17,6 @@ public class Main {
     
     public static void main(String[] args){
     
-    String nome = "João";
-    System.out.println(nome);
     
     Dispositivo equipamento = new Dispositivo(
             1, 
@@ -39,7 +37,7 @@ public class Main {
     System.out.println(equipamento.getTipo());
     System.out.println(equipamento.getPotencia());
     System.out.println(equipamento.getVoltagem());
-    System.out.println(equipamento.getData());
+    System.out.println(equipamento.getDataFormatada());
     System.out.println(equipamento.getHoras());
     System.out.println(equipamento.getLocalizacao());
     System.out.println(equipamento.getObs());
