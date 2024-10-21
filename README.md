@@ -8,3 +8,5 @@ João Gabriel Savioli - RA: 247617 <br>
 Karla Alejandra Acosta Barrios - RA: 249369 <br>
 Luiz Fernando Brisola - RA: 249429 <br>
 Nathália Top Hondei- RA: 237298 <br>
+
+## Sobre o Projeto
