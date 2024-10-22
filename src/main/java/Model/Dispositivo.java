@@ -16,7 +16,7 @@ public class Dispositivo {
     /*Quando se utiliza o modificador de acesso private em uma variável, você está restringindo o acesso a essa variável apenas à classe onde ela foi declarada,
     no caso, a classe Dispositivo. Isso significa que somente os métodos dessa classe podem acessar ou modificar diretamente essas variáveis. */
     
-    private int id; // ID do dispositivo
+    private final int id; // ID do dispositivo
     private String nome; // Nome do dispositivo
     private String tipo; // Tipo do dispositivo
     private int potencia; // Potência em Watts
@@ -25,11 +25,12 @@ public class Dispositivo {
     private float horas; // Horas de uso diárias estimadas (float)
     private String localizacao; // Localização (cômodo)
     private Estado estado; // Tipo enum 
-    private String obs; // Para armazenar texto adicional sobre o dispositivo
+    private String obs; // 
 
     
-    // Cosntrutor abaixo
+    // Construtores abaixo:
     
+    // Construtor com possibilidade de fazer comentário
     public Dispositivo(int id, String nome, String tipo, int potencia, Voltagem voltagem, LocalDate data, float horas, String localizacao, Estado estado, String obs) {
         this.id = id;
         this.nome = nome;
@@ -41,6 +42,20 @@ public class Dispositivo {
         this.localizacao = localizacao;
         this.estado = estado;
         this.obs = obs;
+    }
+    
+    // Cosntrutor sem opção de comentário, caso o usuário não queira incçuir um comentário no cadastro
+    public Dispositivo(int id, String nome, String tipo, int potencia, Voltagem voltagem, LocalDate data, float horas, String localizacao, Estado estado) {
+        this.id = id;
+        this.nome = nome;
+        this.tipo = tipo;
+        this.potencia = potencia;
+        this.voltagem = voltagem;
+        this.data = data;
+        this.horas = horas;
+        this.localizacao = localizacao;
+        this.estado = estado;
+        this.obs = "";
     }
 
     // Criando enumerations para a seleção de Volts e Estado
@@ -172,4 +187,5 @@ public class Dispositivo {
     }
     
 }
+
 
