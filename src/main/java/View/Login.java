@@ -4,17 +4,23 @@
  */
 package View;
 
+import Controller.LoginController; // Necessário importar para o Controlador poder se comunicar com a View
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author savio
  */
 public class Login extends javax.swing.JFrame {
 
+    private final LoginController controller;
+
     /**
      * Creates new form Login
      */
     public Login() {
         initComponents();
+        controller = new LoginController(this); // Isso aqui foi adicionado para que o controller do Login fosse reconhecido por ele mesmo, indicando que ele mesmo é o próprio controlador
     }
 
     /**
@@ -79,7 +85,8 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_TextUsuarioActionPerformed
 
     private void BtnLogarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnLogarActionPerformed
-        // TODO add your handling code here:
+        // Executa quando eu clico no botão "Login"
+        this.controller.teste();
     }//GEN-LAST:event_BtnLogarActionPerformed
 
     /**
@@ -125,4 +132,10 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JPasswordField SenhaUsuario;
     private javax.swing.JTextField TextUsuario;
     // End of variables declaration//GEN-END:variables
+
+    // Função abaixo criada com a ajuda no Netbeans pela função na linha 24 (LoginController) para exibição de mensagem configurada na controller (LoginController) 
+    
+    public void exibeMensagem(String mensagem) { 
+        JOptionPane.showMessageDialog(null, mensagem);
+    }
 }
