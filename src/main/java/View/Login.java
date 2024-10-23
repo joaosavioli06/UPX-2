@@ -6,6 +6,8 @@ package View;
 
 import Controller.LoginController; // Necessário importar para o Controlador poder se comunicar com a View
 import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
 
 /**
  *
@@ -138,4 +140,27 @@ public class Login extends javax.swing.JFrame {
     public void exibeMensagem(String mensagem) { 
         JOptionPane.showMessageDialog(null, mensagem);
     }
+
+    // Getters e Setters criados para que possamos pegar as informações da View de Login e enviá-las ao controlador (LoginController)
+    // Getters e Setters do TextUsuario e SenhaUsuario abaixo:
+    
+    public JPasswordField getSenhaUsuario() {
+        return SenhaUsuario;
+    }
+
+    public void setSenhaUsuario(JPasswordField SenhaUsuario) {
+        this.SenhaUsuario = SenhaUsuario;
+    }
+
+    public JTextField getTextUsuario() {
+        return TextUsuario;
+    }
+
+    public void setTextUsuario(JTextField TextUsuario) {
+        this.TextUsuario = TextUsuario;
+    }
+    
+    
 }
+
+
