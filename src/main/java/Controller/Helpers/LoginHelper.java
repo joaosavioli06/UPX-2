@@ -41,11 +41,8 @@ public class LoginHelper {
     
     public void limparTela(){
     view.getTextUsuario().setText("");
-    // view.getUsuarioSenha().setText(""); Verificar mais tarde 23/10/2024
-    
+    view.getSenhaUsuario().setText("");
     }
-
-
 }
     
  

@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package Controller;
+import Controller.Helpers.LoginHelper;
 import Model.Usuario;
 import View.Login; // Importando view Login.java
 /**
@@ -14,14 +15,16 @@ public class LoginController { // Estabelece conexão com a View Login.java
     // Construtor abaixo 
     
     private final Login view; 
+    private LoginHelper helper;
         
     public LoginController(Login view) { // recebe uma instância da Login.java que representa a interface gráfica
         this.view = view; // a view recebida é armazenada em uma variável de instância. Isso permite que o controlador possoa interagir com a view
+        this.helper = new LoginHelper(view);
     }
     
     public void loginNoSistema(){
         // Pega um usuário da View
-        
+        Usuario usuario = helper.obterModelo();
         
         // Pesquisa o usuário no Banco de Dados
         
