@@ -1,0 +1,33 @@
+# Tabelas no Banco de Dados
+
+CREATE TABLE usuarios (
+    id INT AUTO_INCREMENT PRIMARY KEY,       -- Identificador único para cada usuário (Geração de futuros id's de forma automática)
+    nome VARCHAR(100) NOT NULL,              -- Nome de usuário (usado para login)
+    senha_hash VARCHAR(256) NOT NULL,        -- Hash da senha para autenticação (pela senha criptografada ser muito grande, por isso o campo 256)
+    salt VARCHAR(50) NOT NULL                -- Salt usado para aumentar a segurança do hash
+);
+
+// VARCHAR = tipo de dado SQL para cadeia de caracteres, definindo o tamanho máximo de caracteres
+// PRIMARY KEY = identificador único para cada registro
+
+CREATE TABLE dispositivos (
+    id INT AUTO_INCREMENT PRIMARY KEY,       -- Identificador único do dispositivo
+    nome VARCHAR(100) NOT NULL,              -- Nome do dispositivo
+    tipo VARCHAR(50),                        -- Tipo de dispositivo
+    potencia INT NOT NULL,                   -- Potência em Watts
+    voltagem ENUM('110v', '220v', 'bivolt') NOT NULL,  -- Enum para voltagem
+    data_aquisicao DATE NOT NULL,            -- Data de aquisição do dispositivo
+    horas_uso_diarias FLOAT,                 -- Horas de uso diárias estimadas
+    localizacao VARCHAR(100),                -- Localização ou cômodo
+    estado ENUM('ativo', 'inativo') NOT NULL, -- Enum para o estado do dispositivo
+    obs TEXT                                 -- Campo para observações adicionais
+);
+
+// ENUM = usado para definir uma coluna com um conjunto específico de valores possíveis, permitindo que você escolha uma opção dentro de uma lista predefinida.
+
+# Trabalhando em Conjunto no Banco de Dados
+
+PlanetScale para utilização do MySQL na cloud
+* Voltado para bancos de dados compatíveis com MySQL.
+* No plano gratuito, oferece até 5 GB de armazenamento, sendo uma boa opção para protótipos e desenvolvimento.
+* Boa integração com GitHub, útil para controle de versão do esquema de dados.
