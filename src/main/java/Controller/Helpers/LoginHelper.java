@@ -33,6 +33,11 @@ public class LoginHelper {
         return usuarioModelo.verificarSenha(senhaDigitada); // Usa o método de verificação da senha
      }
      
+     /*
+     O método setarModelo() que você usa no LoginHelper apenas preenche o campo de nome de usuário na tela de login, sem incluir a senha. 
+     Esse método é útil para pré-preencher o nome de usuário em algumas situações.
+     */
+   
     public void setarModelo(Usuario modelo){   // Função que seta o nome de usuário na view (não setamos a senha)
         String nome = modelo.getNome();
         view.getTextUsuario().setText(nome); // Apenas o nome será setado na view
