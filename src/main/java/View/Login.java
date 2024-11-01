@@ -115,6 +115,12 @@ public class Login extends javax.swing.JFrame {
     System.out.println("Nome de Usuário: " + usuarioModelo.getNome());
     System.out.println("Nome de Usuário: " + usuarioModelo.getSenha());
     
+    // Cria uma instância do LoginController
+    LoginController controller = new LoginController(this);
+    
+    // Chama o método para tentar fazer login
+    controller.loginNoSistema();
+
     }//GEN-LAST:event_BtnLogarActionPerformed
 
     private void SenhaUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SenhaUsuarioActionPerformed
