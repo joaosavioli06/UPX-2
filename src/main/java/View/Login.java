@@ -87,8 +87,7 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_TextUsuarioActionPerformed
 
     private void BtnLogarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnLogarActionPerformed
-        // Executa quando eu clico no botão "Login"
-        this.controller.teste();
+
     }//GEN-LAST:event_BtnLogarActionPerformed
 
     /**

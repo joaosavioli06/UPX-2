@@ -9,6 +9,7 @@ import Model.Dispositivo;
 import Model.Dispositivo.Estado;
 import Model.Dispositivo.Voltagem;
 import Model.Usuario;
+import java.sql.Connection;
 
 /**
  *
@@ -89,5 +90,27 @@ public class Main {
 }
     System.out.println(usuario);
     }
+
+    private static class connection {
+
+        private static Connection getConnection() {
+            throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        }
+
+        public connection() {
+        }
+    }
+    
+    public class TestConnection {
+    public static void main(String[] args) {
+        Connection conn = connection.getConnection();
+        if (conn != null) {
+            System.out.println("Conexão estabelecida com sucesso.");
+        }
+    }
+}
+    
+    
+    
     
 }
