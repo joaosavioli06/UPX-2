@@ -4,10 +4,13 @@
  */
 package View;
 
+import Controller.Helpers.LoginHelper;
 import Controller.LoginController; // Necessário importar para o Controlador poder se comunicar com a View
+import Model.Usuario;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+
 
 /**
  *
@@ -36,6 +39,7 @@ public class Login extends javax.swing.JFrame {
 
         TextUsuario = new javax.swing.JTextField();
         SenhaUsuario = new javax.swing.JPasswordField();
+        BtnCadastrar = new javax.swing.JButton();
         BtnLogar = new javax.swing.JButton();
         LabelUsuario = new javax.swing.JLabel();
         LabelSenha = new javax.swing.JLabel();
@@ -54,7 +58,21 @@ public class Login extends javax.swing.JFrame {
         getContentPane().add(TextUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 390, 150, 30));
 
         SenhaUsuario.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        SenhaUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SenhaUsuarioActionPerformed(evt);
+            }
+        });
         getContentPane().add(SenhaUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 470, 150, 30));
+
+        BtnCadastrar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        BtnCadastrar.setText("Cadastrar");
+        BtnCadastrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnCadastrarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(BtnCadastrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 580, 130, -1));
 
         BtnLogar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         BtnLogar.setText("Login");
@@ -64,7 +82,7 @@ public class Login extends javax.swing.JFrame {
                 BtnLogarActionPerformed(evt);
             }
         });
-        getContentPane().add(BtnLogar, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 530, 90, 30));
+        getContentPane().add(BtnLogar, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 520, 90, 30));
 
         LabelUsuario.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         LabelUsuario.setForeground(new java.awt.Color(255, 255, 255));
@@ -87,8 +105,32 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_TextUsuarioActionPerformed
 
     private void BtnLogarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnLogarActionPerformed
+    // Cria uma instância do LoginHelper
+    LoginHelper helper = new LoginHelper(this);
 
+    // Obtém o modelo a partir dos dados inseridos na view
+    Usuario usuarioModelo = helper.obterModelo();
+
+    // Exibe as informações no terminal
+    System.out.println("Nome de Usuário: " + usuarioModelo.getNome());
+    System.out.println("Nome de Usuário: " + usuarioModelo.getSenha());
+    
     }//GEN-LAST:event_BtnLogarActionPerformed
+
+    private void SenhaUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SenhaUsuarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_SenhaUsuarioActionPerformed
+
+    private void BtnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCadastrarActionPerformed
+        // Cria uma instância do LoginHelper
+    LoginHelper helper = new LoginHelper(this);
+
+    // Obtém o modelo a partir dos dados inseridos na view
+    Usuario usuarioModelo = helper.obterModelo();
+
+    // Chama o método de cadastro no controlador
+    controller.cadastrarUsuario();
+    }//GEN-LAST:event_BtnCadastrarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -126,6 +168,7 @@ public class Login extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BtnCadastrar;
     private javax.swing.JButton BtnLogar;
     private javax.swing.JLabel LabelFundo;
     private javax.swing.JLabel LabelSenha;

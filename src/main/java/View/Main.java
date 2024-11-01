@@ -81,16 +81,12 @@ public class Main {
     
     System.out.println(usuario.getId());
     System.out.println(usuario.getNome());
-    
-    String senhaParaVerificar = "ninjated10"; // Pode ser um input do usuário
-    if (usuario.verificarSenha(senhaParaVerificar)) {
-    System.out.println("Senha correta!");
-        } else {
-    System.out.println("Senha incorreta!");
-}
-    System.out.println(usuario);
-    }
+  }
 
+    public void setVisible(boolean b) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+    
     private static class connection {
 
         private static Connection getConnection() {

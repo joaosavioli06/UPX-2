@@ -19,20 +19,17 @@ public class LoginHelper {
         this.view = view;
     }
     
-    public Usuario obterModelo(){ // Função que pega os dados que foram inseridos nso campos da view Login
+    public Usuario obterModelo(){ // Função que pega os dados que foram inseridos nos campos da view Login
         String nome = view.getTextUsuario().getText();
-        char[] senhaArray = view.getSenhaUsuario().getPassword(); // Armazena a senha como char[]
-        String senha = new String(senhaArray); // Pode ser convertido temporariamente, mas sem guardar como String
+        String senha = view.getSenhaUsuario().getText();
+        
+          System.out.println("Nome de Usuário: " + nome);
+          System.out.println("Senha: " + senha);
         
         Usuario modelo = new Usuario(0, nome, senha); // Chamada do construtor para criar um usuário
         return modelo; // Retorna a chamada acima como um Modelo pronto a ser utilizado
     }
-    
-    // Função para verificação de senha usando método definido no modelo de usuário (Usuario.java)
-     public boolean validarLogin(Usuario usuarioModelo, String senhaDigitada) {
-        return usuarioModelo.verificarSenha(senhaDigitada); // Usa o método de verificação da senha
-     }
-     
+   
      /*
      O método setarModelo() que você usa no LoginHelper apenas preenche o campo de nome de usuário na tela de login, sem incluir a senha. 
      Esse método é útil para pré-preencher o nome de usuário em algumas situações.
@@ -49,5 +46,6 @@ public class LoginHelper {
     view.getSenhaUsuario().setText("");
     }
 }
+    
     
  
