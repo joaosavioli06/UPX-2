@@ -24,17 +24,19 @@ public class ConnectionUtils {
     public static Connection getConnection() { // importar função para rodar
         if (connection == null) {
             try {
-                connection = DriverManager.getConnection(URL, USER, PASSWORD);
-                System.out.println("Connection to MySQL established successfully.");
+                return DriverManager.getConnection(URL, USER, PASSWORD);
+              
             } catch (SQLException e) {
                 System.out.println("Failed to connect to MySQL.");
                 e.printStackTrace();
+                return null;
             }
         }
         return connection;
     }
 
-    public static void closeConnection() { // chamar para parar 
+    // Método para fechar a conexão ao sair do programa
+    public static void closeConnection(Connection connection) {
         try {
             if (connection != null && !connection.isClosed()) {
                 connection.close();
@@ -43,4 +45,4 @@ public class ConnectionUtils {
             e.printStackTrace();
         }
     }
-} 
+}
