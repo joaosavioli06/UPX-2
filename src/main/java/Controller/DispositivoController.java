@@ -7,6 +7,7 @@ package Controller;
 import Model.Dispositivo;
 import Model.Dispositivo.Estado;
 import Model.Dispositivo.Voltagem;
+import connection.ConnectionUtils;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -22,7 +23,7 @@ public class DispositivoController {
     private Connection connection;
     
     public DispositivoController(Connection connection) {
-        this.connection = connection;
+        this.connection = ConnectionUtils.getConnection(); // Antes: this.connection = connection; || import connection.ConnectionUtils;
     }
     
      public void adicionarDispositivo(Dispositivo dispositivo) throws SQLException {

@@ -24,12 +24,12 @@ public class ConnectionUtils {
     public static Connection getConnection() { // importar função para rodar
         if (connection == null) {
             try {
-                return DriverManager.getConnection(URL, USER, PASSWORD);
+                connection = DriverManager.getConnection(URL, USER, PASSWORD); 
               
             } catch (SQLException e) {
-                System.out.println("Failed to connect to MySQL.");
+                System.out.println("Falha na conexão com o Banco de Dados");
                 e.printStackTrace();
-                return null;
+                
             }
         }
         return connection;

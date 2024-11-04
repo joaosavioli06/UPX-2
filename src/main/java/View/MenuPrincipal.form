@@ -33,140 +33,136 @@
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="40" y="10" width="1150" height="620"/>
+          <AbsoluteConstraints x="50" y="10" width="1150" height="620"/>
         </Constraint>
       </Constraints>
 
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
+              <Group type="102" attributes="0">
+                  <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
-                      <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="1" attributes="0">
-                                  <Component id="LabelId" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="91" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="1" attributes="0">
-                                  <Group type="103" groupAlignment="1" attributes="0">
-                                      <Component id="LabelVolts" alignment="1" min="-2" pref="152" max="-2" attributes="0"/>
-                                      <Component id="LabelData" alignment="1" min="-2" pref="152" max="-2" attributes="0"/>
-                                      <Component id="LabelWatts" alignment="1" min="-2" pref="152" max="-2" attributes="0"/>
-                                      <Component id="LabelTipo" alignment="1" min="-2" pref="152" max="-2" attributes="0"/>
-                                      <Component id="LabelDispositivo" alignment="1" min="-2" pref="152" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="TextDispositivo" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="TextTipo" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="TextWatts" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="SpinnerData" alignment="1" pref="188" max="32767" attributes="0"/>
-                                  <Component id="TextId" alignment="0" max="32767" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
-                                  <Component id="BoxVolts" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
-                          <EmptySpace min="-2" pref="67" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="LabelEstado" min="-2" pref="214" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="145" max="-2" attributes="0"/>
-                                  <Component id="BoxEstado" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <Component id="LabelObservações" alignment="0" min="-2" pref="144" max="-2" attributes="0"/>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
-                                          <Component id="LabelHoras" min="-2" pref="272" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Component id="LabelLocal" alignment="0" min="-2" pref="305" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="TextLocal" alignment="0" min="-2" pref="188" max="-2" attributes="0"/>
-                                      <Component id="TextHoras" alignment="0" min="-2" pref="188" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
-                              <Component id="ScrollObs" alignment="0" max="32767" attributes="0"/>
+                      <Component id="LabelVolts" alignment="1" min="-2" pref="152" max="-2" attributes="0"/>
+                      <Component id="LabelData" alignment="1" min="-2" pref="152" max="-2" attributes="0"/>
+                      <Component id="LabelWatts" alignment="1" min="-2" pref="152" max="-2" attributes="0"/>
+                      <Component id="LabelDispositivo" alignment="1" min="-2" pref="152" max="-2" attributes="0"/>
+                      <Component id="LabelTipo" min="-2" pref="152" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="TextDispositivo" alignment="0" max="32767" attributes="0"/>
+                              <Component id="TextTipo" alignment="0" max="32767" attributes="0"/>
+                              <Component id="TextWatts" alignment="0" max="32767" attributes="0"/>
+                              <Component id="SpinnerData" alignment="1" pref="188" max="32767" attributes="0"/>
                           </Group>
                       </Group>
-                      <Component id="ScrollTable" alignment="1" min="-2" pref="1100" max="-2" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
+                          <Component id="BoxVolts" min="-2" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
-                  <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="1" attributes="0">
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          <Component id="LabelHoras" min="-2" pref="272" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
+                          <Component id="TextHoras" min="-2" pref="110" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="236" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" attributes="0">
+                          <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <Component id="LabelEstado" min="-2" pref="214" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="109" max="-2" attributes="0"/>
+                                  <Component id="BoxEstado" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Component id="LabelLocal" min="-2" pref="305" max="-2" attributes="0"/>
+                              <Component id="LabelObservações" alignment="0" min="-2" pref="144" max="-2" attributes="0"/>
+                              <Component id="ScrollObs" min="-2" pref="672" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <Group type="102" attributes="0">
+                          <EmptySpace min="-2" pref="345" max="-2" attributes="0"/>
+                          <Component id="TextLocal" min="-2" pref="188" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
               </Group>
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="500" max="-2" attributes="0"/>
+              <Group type="102" attributes="0">
+                  <EmptySpace min="-2" pref="494" max="-2" attributes="0"/>
                   <Component id="SubmitiBtn" min="-2" pref="129" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="85" max="-2" attributes="0"/>
+                  <Component id="BtnLimpar" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
+              </Group>
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace pref="19" max="32767" attributes="0"/>
+                  <Component id="ScrollTable" min="-2" pref="1115" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="LabelId" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="TextId" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
-                      <Component id="LabelHoras" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="TextHoras" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="LabelDispositivo" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="TextTipo" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
+                      <Component id="LabelHoras" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="TextHoras" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="LabelLocal" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="TextLocal" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
+                      <Component id="LabelTipo" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="TextDispositivo" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="LabelTipo" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                          <Component id="TextDispositivo" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
-                          <Component id="LabelEstado" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="BoxEstado" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="LabelWatts" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="TextWatts" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
+                              </Group>
+                              <Component id="LabelEstado" alignment="0" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="1" attributes="0">
+                          <Component id="BoxEstado" min="-2" pref="34" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="1" attributes="0">
-                      <Group type="102" alignment="1" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="LabelWatts" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="TextWatts" alignment="0" min="-2" pref="34" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
-                                  <Component id="LabelVolts" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <Component id="BoxVolts" alignment="0" min="-2" pref="33" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="LabelObservações" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="LabelVolts" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="BoxVolts" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="ScrollObs" min="-2" pref="113" max="-2" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="LabelData" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="SpinnerData" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <Group type="102" alignment="1" attributes="0">
-                          <Component id="LabelObservações" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="ScrollObs" min="-2" pref="98" max="-2" attributes="0"/>
-                      </Group>
+                  </Group>
+                  <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="SubmitiBtn" alignment="1" min="-2" pref="41" max="-2" attributes="0"/>
+                      <Component id="BtnLimpar" alignment="1" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="SubmitiBtn" min="-2" pref="41" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="ScrollTable" pref="200" max="32767" attributes="0"/>
+                  <Component id="ScrollTable" pref="173" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -174,11 +170,6 @@
       </Layout>
       <SubComponents>
         <Component class="javax.swing.JTextField" name="TextTipo">
-        </Component>
-        <Component class="javax.swing.JTextField" name="TextId">
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="TextIdActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="TextDispositivo">
         </Component>
@@ -215,14 +206,6 @@
               <Font name="Segoe UI" size="14" style="1"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Tipo de dispositivo"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="LabelId">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Segoe UI" size="14" style="1"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="ID"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="LabelWatts">
@@ -331,8 +314,7 @@
             <Component class="javax.swing.JTable" name="Table">
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                  <Table columnCount="10" rowCount="4">
-                    <Column editable="true" title="ID" type="java.lang.Object"/>
+                  <Table columnCount="9" rowCount="4">
                     <Column editable="true" title="Nome" type="java.lang.Object"/>
                     <Column editable="true" title="Tipo" type="java.lang.Object"/>
                     <Column editable="true" title="Pot&#xea;ncia (Watts)" type="java.lang.Object"/>
@@ -373,7 +355,7 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JTextArea" name="jTextArea1">
+            <Component class="javax.swing.JTextArea" name="jTextArea">
               <Properties>
                 <Property name="columns" type="int" value="20"/>
                 <Property name="rows" type="int" value="5"/>
@@ -381,6 +363,21 @@
             </Component>
           </SubComponents>
         </Container>
+        <Component class="javax.swing.JButton" name="BtnLimpar">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/images/icons/icone_limpar.png"/>
+            </Property>
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
+                <BevelBorder/>
+              </Border>
+            </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnLimparActionPerformed"/>
+          </Events>
+        </Component>
       </SubComponents>
     </Container>
     <Component class="javax.swing.JLabel" name="LabelFundo">

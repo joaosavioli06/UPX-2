@@ -16,7 +16,6 @@ public class Dispositivo {
     /*Quando se utiliza o modificador de acesso private em uma variável, você está restringindo o acesso a essa variável apenas à classe onde ela foi declarada,
     no caso, a classe Dispositivo. Isso significa que somente os métodos dessa classe podem acessar ou modificar diretamente essas variáveis. */
     
-    private final int id; // ID do dispositivo
     private String nome; // Nome do dispositivo
     private String tipo; // Tipo do dispositivo
     private int potencia; // Potência em Watts
@@ -31,8 +30,7 @@ public class Dispositivo {
     // Construtores abaixo:
     
     // Construtor com possibilidade de fazer comentário
-    public Dispositivo(int id, String nome, String tipo, int potencia, Voltagem voltagem, LocalDate data, float horas, String localizacao, Estado estado, String obs) {
-        this.id = id;
+    public Dispositivo(String nome, String tipo, int potencia, Voltagem voltagem, LocalDate data, float horas, String localizacao, Estado estado, String obs) {
         this.nome = nome;
         this.tipo = tipo;
         this.potencia = potencia;
@@ -45,8 +43,7 @@ public class Dispositivo {
     }
     
     // Cosntrutor sem opção de comentário, caso o usuário não queira incçuir um comentário no cadastro
-    public Dispositivo(int id, String nome, String tipo, int potencia, Voltagem voltagem, LocalDate data, float horas, String localizacao, Estado estado) {
-        this.id = id;
+    public Dispositivo(String nome, String tipo, int potencia, Voltagem voltagem, LocalDate data, float horas, String localizacao, Estado estado) {
         this.nome = nome;
         this.tipo = tipo;
         this.potencia = potencia;
@@ -92,12 +89,6 @@ public class Dispositivo {
             return descricao;
         }
     
-    }
-    
-    // Criando apenas um Getter para o ID, visto que é uma varáivel que não vai ser modificada
-    
-    public int getId() {
-        return id;
     }
 
     // Getters e Setters abaixo do restante

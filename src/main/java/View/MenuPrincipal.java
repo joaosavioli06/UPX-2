@@ -9,13 +9,17 @@ import Controller.DispositivoController;
 import Model.Dispositivo;
 import Model.Dispositivo.Voltagem;
 import Model.Dispositivo.Estado;
+import connection.ConnectionUtils;
+import static connection.ConnectionUtils.getConnection;
 import java.sql.SQLException;
+import java.sql.Connection;
 import javax.swing.*;
 import javax.swing.SpinnerDateModel;
 import java.time.LocalDate;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.time.ZoneId;
+import javax.swing.JOptionPane;
 /**
  *
  * @author savio
@@ -40,14 +44,12 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         PainelCadastro = new javax.swing.JPanel();
         TextTipo = new javax.swing.JTextField();
-        TextId = new javax.swing.JTextField();
         TextDispositivo = new javax.swing.JTextField();
         TextWatts = new javax.swing.JTextField();
         TextHoras = new javax.swing.JTextField();
         TextLocal = new javax.swing.JTextField();
         LabelDispositivo = new javax.swing.JLabel();
         LabelTipo = new javax.swing.JLabel();
-        LabelId = new javax.swing.JLabel();
         LabelWatts = new javax.swing.JLabel();
         LabelVolts = new javax.swing.JLabel();
         LabelData = new javax.swing.JLabel();
@@ -62,19 +64,14 @@ public class MenuPrincipal extends javax.swing.JFrame {
         Table = new javax.swing.JTable();
         SubmitiBtn = new javax.swing.JButton();
         ScrollObs = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        jTextArea = new javax.swing.JTextArea();
+        BtnLimpar = new javax.swing.JButton();
         LabelFundo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         PainelCadastro.setBackground(new java.awt.Color(204, 204, 204));
-
-        TextId.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TextIdActionPerformed(evt);
-            }
-        });
 
         TextWatts.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
@@ -104,9 +101,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         LabelTipo.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         LabelTipo.setText("Tipo de dispositivo");
-
-        LabelId.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        LabelId.setText("ID");
 
         LabelWatts.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         LabelWatts.setText("Potência (Watts)");
@@ -143,13 +137,13 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         Table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "Nome", "Tipo", "Potência (Watts)", "Voltagem", "Data", "Horas", "Localização", "Estado", "Observações"
+                "Nome", "Tipo", "Potência (Watts)", "Voltagem", "Data", "Horas", "Localização", "Estado", "Observações"
             }
         ));
         ScrollTable.setViewportView(Table);
@@ -163,126 +157,128 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        ScrollObs.setViewportView(jTextArea1);
+        jTextArea.setColumns(20);
+        jTextArea.setRows(5);
+        ScrollObs.setViewportView(jTextArea);
+
+        BtnLimpar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/icone_limpar.png"))); // NOI18N
+        BtnLimpar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        BtnLimpar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnLimparActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout PainelCadastroLayout = new javax.swing.GroupLayout(PainelCadastro);
         PainelCadastro.setLayout(PainelCadastroLayout);
         PainelCadastroLayout.setHorizontalGroup(
             PainelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PainelCadastroLayout.createSequentialGroup()
-                .addGap(37, 37, 37)
+                .addGap(43, 43, 43)
                 .addGroup(PainelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(LabelVolts, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(LabelData, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(LabelWatts, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(LabelDispositivo, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(LabelTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(PainelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(PainelCadastroLayout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addGroup(PainelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PainelCadastroLayout.createSequentialGroup()
-                                .addComponent(LabelId)
-                                .addGap(91, 91, 91))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PainelCadastroLayout.createSequentialGroup()
-                                .addGroup(PainelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(LabelVolts, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(LabelData, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(LabelWatts, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(LabelTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(LabelDispositivo, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                        .addGroup(PainelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(PainelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(TextDispositivo)
-                                .addComponent(TextTipo)
-                                .addComponent(TextWatts)
-                                .addComponent(SpinnerData, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)
-                                .addComponent(TextId))
-                            .addGroup(PainelCadastroLayout.createSequentialGroup()
-                                .addGap(57, 57, 57)
-                                .addComponent(BoxVolts, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(67, 67, 67)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(PainelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(TextDispositivo)
+                            .addComponent(TextTipo)
+                            .addComponent(TextWatts)
+                            .addComponent(SpinnerData, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)))
+                    .addGroup(PainelCadastroLayout.createSequentialGroup()
+                        .addGap(60, 60, 60)
+                        .addComponent(BoxVolts, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(PainelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PainelCadastroLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(LabelHoras, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(53, 53, 53)
+                        .addComponent(TextHoras, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(236, 236, 236))
+                    .addGroup(PainelCadastroLayout.createSequentialGroup()
+                        .addGap(56, 56, 56)
                         .addGroup(PainelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(PainelCadastroLayout.createSequentialGroup()
                                 .addComponent(LabelEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(145, 145, 145)
+                                .addGap(109, 109, 109)
                                 .addComponent(BoxEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(LabelLocal, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(LabelObservações, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(PainelCadastroLayout.createSequentialGroup()
-                                .addGroup(PainelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(PainelCadastroLayout.createSequentialGroup()
-                                        .addGap(6, 6, 6)
-                                        .addComponent(LabelHoras, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(LabelLocal, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(PainelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(TextLocal, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(TextHoras, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(ScrollObs)))
-                    .addComponent(ScrollTable, javax.swing.GroupLayout.PREFERRED_SIZE, 1100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(37, 37, 37))
+                            .addComponent(ScrollObs, javax.swing.GroupLayout.PREFERRED_SIZE, 672, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(PainelCadastroLayout.createSequentialGroup()
+                        .addGap(345, 345, 345)
+                        .addComponent(TextLocal, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(32, 32, 32))
             .addGroup(PainelCadastroLayout.createSequentialGroup()
-                .addGap(500, 500, 500)
+                .addGap(494, 494, 494)
                 .addComponent(SubmitiBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(85, 85, 85)
+                .addComponent(BtnLimpar)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PainelCadastroLayout.createSequentialGroup()
+                .addContainerGap(19, Short.MAX_VALUE)
+                .addComponent(ScrollTable, javax.swing.GroupLayout.PREFERRED_SIZE, 1115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(15, 15, 15))
         );
         PainelCadastroLayout.setVerticalGroup(
             PainelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PainelCadastroLayout.createSequentialGroup()
-                .addGap(48, 48, 48)
-                .addGroup(PainelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(LabelId)
-                    .addComponent(TextId, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(LabelHoras)
-                    .addComponent(TextHoras, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(39, 39, 39)
                 .addGroup(PainelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(LabelDispositivo)
                     .addComponent(TextTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(LabelHoras)
+                    .addComponent(TextHoras, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(27, 27, 27)
+                .addGroup(PainelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(LabelLocal)
-                    .addComponent(TextLocal, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(TextLocal, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(LabelTipo)
+                    .addComponent(TextDispositivo, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(PainelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(LabelTipo)
-                    .addGroup(PainelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(TextDispositivo, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(LabelEstado)
-                        .addComponent(BoxEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addGroup(PainelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(PainelCadastroLayout.createSequentialGroup()
                         .addGroup(PainelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(LabelWatts)
-                            .addComponent(TextWatts, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(14, 14, 14)
-                        .addGroup(PainelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(PainelCadastroLayout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addComponent(LabelVolts))
-                            .addComponent(BoxVolts, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
+                            .addGroup(PainelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(LabelWatts)
+                                .addComponent(TextWatts, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(LabelEstado))
+                        .addGap(16, 16, 16))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PainelCadastroLayout.createSequentialGroup()
+                        .addComponent(BoxEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)))
+                .addGroup(PainelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(LabelObservações)
+                    .addComponent(LabelVolts)
+                    .addComponent(BoxVolts, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(PainelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(ScrollObs, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(PainelCadastroLayout.createSequentialGroup()
+                        .addGap(8, 8, 8)
                         .addGroup(PainelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(LabelData)
-                            .addComponent(SpinnerData, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(PainelCadastroLayout.createSequentialGroup()
-                        .addComponent(LabelObservações)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(ScrollObs, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(SpinnerData, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(26, 26, 26)
+                .addGroup(PainelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(SubmitiBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BtnLimpar, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addGap(18, 18, 18)
-                .addComponent(SubmitiBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(ScrollTable, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                .addComponent(ScrollTable, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
-        getContentPane().add(PainelCadastro, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, 1150, 620));
+        getContentPane().add(PainelCadastro, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 10, 1150, 620));
 
         LabelFundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/menu_principal.jpg"))); // NOI18N
         getContentPane().add(LabelFundo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1270, 640));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void TextIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextIdActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_TextIdActionPerformed
 
     private void TextWattsFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TextWattsFocusLost
         // Obtém o valor do campo de texto e remove espaços em branco
@@ -292,7 +288,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
         if (!valor.isEmpty() && !valor.endsWith("W")) {
             TextWatts.setText(valor + "W");
         }
-
     }//GEN-LAST:event_TextWattsFocusLost
 
     private void TextWattsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextWattsActionPerformed
@@ -312,53 +307,92 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_BoxVoltsActionPerformed
 
     private void SubmitiBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubmitiBtnActionPerformed
-
-        String nome = TextTipo.getText();
-        String tipo = TextDispositivo.getText();
-        int potencia = Integer.parseInt(TextWatts.getText());
-        Voltagem voltagem = Voltagem.valueOf(BoxVolts.getSelectedItem().toString());
         
-        // Captura e converte a data do JSpinner
-        Date date = (Date) SpinnerData.getValue(); // Obtendo o valor como Date
-        LocalDate data = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate(); // Convertendo para LocalDate
-
-
-        float horas = Float.parseFloat(TextHoras.getText());
-        String localizacao = TextLocal.getText();
-        Estado estado = Estado.valueOf(BoxEstado.getSelectedItem().toString());
-        
-        // Obtendo o texto do JTextArea que está dentro do JScrollPane
-        JTextArea textArea = (JTextArea) ScrollObs.getViewport().getView(); // Acesse o JTextArea
-        String obs = textArea.getText(); // Agora você pode obter o texto
-
-
-        Dispositivo dispositivo = new Dispositivo(0, nome, tipo, potencia, voltagem, data, horas, localizacao, estado, obs);
-        
-        Connection connection = null;
+       try {
+    // Verificação dos campos de texto
+    if (TextTipo.getText().isEmpty()) throw new IllegalArgumentException("O nome do dispositivo não pode estar vazio.");
+    if (TextDispositivo.getText().isEmpty()) throw new IllegalArgumentException("O tipo de dispositivo não pode estar vazio.");
+    
+    int potencia;
     try {
-        connection = obterConexao(); // Obtém a conexão com o banco
-        DispositivoController controller = new DispositivoController(connection); // Passa a conexão para o controller
-        controller.adicionarDispositivo(dispositivo);
-        // Atualizar a tabela com os novos dados, se necessário
-    } catch (SQLException e) {
-        e.printStackTrace(); // Tratar exceção adequadamente
-    } finally {
-        if (connection != null) {
-            try {
-                connection.close(); // Fecha a conexão após o uso
-            } catch (SQLException e) {
-                e.printStackTrace(); // Tratar exceção ao fechar a conexão
-            }
-        }
+        String potenciaTexto = TextWatts.getText().replaceAll("[^\\d]", ""); // Remove tudo que não é dígito
+        potencia = Integer.parseInt(potenciaTexto);
+    } catch (NumberFormatException e) {
+        throw new NumberFormatException("A potência deve ser um número inteiro válido.");
     }
-}
-        
+
+    Voltagem voltagem;
+    try {
+        voltagem = Voltagem.valueOf(BoxVolts.getSelectedItem().toString());
+    } catch (IllegalArgumentException e) {
+        throw new IllegalArgumentException("Por favor, selecione uma voltagem válida.");
+    }
+
+    LocalDate data;
+    try {
+        Date date = (Date) SpinnerData.getValue();
+        data = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+    } catch (ClassCastException e) {
+        throw new ClassCastException("A data de aquisição é inválida.");
+    }
+
+    float horas;
+    try {
+        horas = Float.parseFloat(TextHoras.getText());
+    } catch (NumberFormatException e) {
+        throw new NumberFormatException("As horas de uso devem ser um número válido.");
+    }
+
+    if (TextLocal.getText().isEmpty()) throw new IllegalArgumentException("A localização do dispositivo não pode estar vazia.");
+
+    Estado estado;
+    try {
+        estado = Estado.valueOf(BoxEstado.getSelectedItem().toString());
+    } catch (IllegalArgumentException e) {
+        throw new IllegalArgumentException("Por favor, selecione o estado do dispositivo.");
+    }
+
+    // Coleta das observações
+    String obs = ((JTextArea) ScrollObs.getViewport().getView()).getText();
+    if (obs.length() > 200) throw new IllegalArgumentException("As observações são muito longas.");
+
+    // Criação do objeto Dispositivo e envio para o banco
+    Dispositivo dispositivo = new Dispositivo(TextTipo.getText(), TextDispositivo.getText(), potencia, voltagem, data, horas, TextLocal.getText(), estado, obs);
+    DispositivoController dispositivoController = new DispositivoController(ConnectionUtils.getConnection());
+    dispositivoController.adicionarDispositivo(dispositivo);
+
+    // Mensagem de sucesso
+    JOptionPane.showMessageDialog(this, "Dispositivo enviado com sucesso!");
+
+    } catch (NumberFormatException e) {
+    JOptionPane.showMessageDialog(this, "Erro: valor numérico inválido.");
+    } catch (IllegalArgumentException | ClassCastException e) {
+    JOptionPane.showMessageDialog(this, "Erro: valor inválido em um dos campos.");
+    } catch (SQLException e) {
+    JOptionPane.showMessageDialog(this, "Erro ao conectar ao banco de dados: " + e.getMessage());
+    } catch (Exception e) {
+    JOptionPane.showMessageDialog(this, "Erro inesperado: " + e.getMessage());
+    e.printStackTrace();
+    }
+       
     }//GEN-LAST:event_SubmitiBtnActionPerformed
+
+    private void BtnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnLimparActionPerformed
+    TextTipo.setText(""); // Limpa o campo de texto do tipo
+    TextDispositivo.setText(""); // Limpa o campo de texto do dispositivo
+    TextWatts.setText(""); // Limpa o campo de potência
+    BoxVolts.setSelectedIndex(0); // Reseta o ComboBox para a primeira opção (110V)
+    SpinnerData.setValue(new Date()); // Reseta o JSpinner para a data atual
+    TextHoras.setText(""); // Limpa o campo de horas
+    TextLocal.setText(""); // Limpa o campo de localização
+    BoxEstado.setSelectedIndex(0); // Reseta o ComboBox para a primeira opção (Ativo)
+    ScrollObs.setViewportView(new JTextArea()); // Limpa a área de observações
+    }//GEN-LAST:event_BtnLimparActionPerformed
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public  void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -393,12 +427,12 @@ public class MenuPrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> BoxEstado;
     private javax.swing.JComboBox<String> BoxVolts;
+    private javax.swing.JButton BtnLimpar;
     private javax.swing.JLabel LabelData;
     private javax.swing.JLabel LabelDispositivo;
     private javax.swing.JLabel LabelEstado;
     private javax.swing.JLabel LabelFundo;
     private javax.swing.JLabel LabelHoras;
-    private javax.swing.JLabel LabelId;
     private javax.swing.JLabel LabelLocal;
     private javax.swing.JLabel LabelObservações;
     private javax.swing.JLabel LabelTipo;
@@ -412,9 +446,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JTable Table;
     private javax.swing.JTextField TextDispositivo;
     private javax.swing.JTextField TextHoras;
-    private javax.swing.JTextField TextId;
     private javax.swing.JTextField TextLocal;
     private javax.swing.JTextField TextTipo;
     private javax.swing.JTextField TextWatts;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextArea jTextArea;
     // End of variables declaration//GEN-END:variables
+}
