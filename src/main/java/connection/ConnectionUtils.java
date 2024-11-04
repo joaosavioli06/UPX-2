@@ -18,24 +18,19 @@ public class ConnectionUtils {
     private static final String USER = "root";
     private static final String PASSWORD = "Jj081123";
 
-    // Hold the connection as a singleton
-    private static Connection connection = null;
-
-    public static Connection getConnection() { // importar função para rodar
-        if (connection == null) {
-            try {
-                connection = DriverManager.getConnection(URL, USER, PASSWORD); 
-              
-            } catch (SQLException e) {
-                System.out.println("Falha na conexão com o Banco de Dados");
-                e.printStackTrace();
-                
-            }
+    // Método para obter uma nova conexão sempre que for chamado
+    public static Connection getConnection() {
+        Connection connection = null;
+        try {
+            connection = DriverManager.getConnection(URL, USER, PASSWORD);
+        } catch (SQLException e) {
+            System.out.println("Falha na conexão com o Banco de Dados");
+            e.printStackTrace();
         }
         return connection;
     }
 
-    // Método para fechar a conexão ao sair do programa
+    // Método para fechar a conexão passada como parâmetro
     public static void closeConnection(Connection connection) {
         try {
             if (connection != null && !connection.isClosed()) {
@@ -46,3 +41,4 @@ public class ConnectionUtils {
         }
     }
 }
+

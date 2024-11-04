@@ -29,6 +29,10 @@ public class Dispositivo {
     
     // Construtores abaixo:
     
+    public Dispositivo() {
+        // Você pode inicializar atributos com valores padrão, se necessário
+    }
+    
     // Construtor com possibilidade de fazer comentário
     public Dispositivo(String nome, String tipo, int potencia, Voltagem voltagem, LocalDate data, float horas, String localizacao, Estado estado, String obs) {
         this.nome = nome;
@@ -40,19 +44,6 @@ public class Dispositivo {
         this.localizacao = localizacao;
         this.estado = estado;
         this.obs = obs;
-    }
-    
-    // Cosntrutor sem opção de comentário, caso o usuário não queira incçuir um comentário no cadastro
-    public Dispositivo(String nome, String tipo, int potencia, Voltagem voltagem, LocalDate data, float horas, String localizacao, Estado estado) {
-        this.nome = nome;
-        this.tipo = tipo;
-        this.potencia = potencia;
-        this.voltagem = voltagem;
-        this.data = data;
-        this.horas = horas;
-        this.localizacao = localizacao;
-        this.estado = estado;
-        this.obs = "";
     }
 
     // Criando enumerations para a seleção de Volts e Estado

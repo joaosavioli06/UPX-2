@@ -10,15 +10,20 @@ import Model.Dispositivo;
 import Model.Dispositivo.Voltagem;
 import Model.Dispositivo.Estado;
 import connection.ConnectionUtils;
-import static connection.ConnectionUtils.getConnection;
 import java.sql.SQLException;
 import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import javax.swing.*;
 import javax.swing.SpinnerDateModel;
+import javax.swing.table.DefaultTableModel;
 import java.time.LocalDate;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.time.ZoneId;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 /**
  *
@@ -26,11 +31,13 @@ import javax.swing.JOptionPane;
  */
 public class MenuPrincipal extends javax.swing.JFrame {
 
+    
     /**
      * Creates new form MenuPrincipal
      */
     public MenuPrincipal() {
         initComponents();
+        carregarDados();
     }
 
     /**
@@ -137,13 +144,13 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         Table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Nome", "Tipo", "Potência (Watts)", "Voltagem", "Data", "Horas", "Localização", "Estado", "Observações"
+                "ID", "Nome", "Tipo", "Potência (Watts)", "Voltagem", "Data", "Horas", "Localização", "Estado", "Observações"
             }
         ));
         ScrollTable.setViewportView(Table);
@@ -309,70 +316,84 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private void SubmitiBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubmitiBtnActionPerformed
         
        try {
-    // Verificação dos campos de texto
-    if (TextTipo.getText().isEmpty()) throw new IllegalArgumentException("O nome do dispositivo não pode estar vazio.");
-    if (TextDispositivo.getText().isEmpty()) throw new IllegalArgumentException("O tipo de dispositivo não pode estar vazio.");
-    
-    int potencia;
-    try {
-        String potenciaTexto = TextWatts.getText().replaceAll("[^\\d]", ""); // Remove tudo que não é dígito
-        potencia = Integer.parseInt(potenciaTexto);
+        // Verificação dos campos de texto
+        if (TextTipo.getText().isEmpty()) throw new IllegalArgumentException("O nome do dispositivo não pode estar vazio.");
+        if (TextDispositivo.getText().isEmpty()) throw new IllegalArgumentException("O tipo de dispositivo não pode estar vazio.");
+
+        // Validação da potência
+        int potencia;
+        try {
+            String potenciaTexto = TextWatts.getText().replaceAll("[^\\d]", ""); // Remove tudo que não é dígito
+            potencia = Integer.parseInt(potenciaTexto);
+        } catch (NumberFormatException e) {
+            throw new NumberFormatException("A potência deve ser um número inteiro válido.");
+        }
+
+        // Validação da voltagem
+        Voltagem voltagem;
+        if (BoxVolts.getSelectedItem() == null) {
+            throw new IllegalArgumentException("Por favor, selecione uma voltagem válida.");
+        } else {
+            String selectedVoltagem = BoxVolts.getSelectedItem().toString().toLowerCase(); // Converte para minúsculas
+            switch (selectedVoltagem) {
+                case "110v" -> voltagem = Voltagem.V110; // Mapeie para a constante correta
+                case "220v" -> voltagem = Voltagem.V220; // Mapeie para a constante correta
+                case "bivolt" -> voltagem = Voltagem.BIVOLT; // Mapeie para a constante correta
+                default -> throw new IllegalArgumentException("Por favor, selecione uma voltagem válida.");
+            }
+        }
+
+        // Validação da data
+        LocalDate data;
+        try {
+            Date date = (Date) SpinnerData.getValue();
+            data = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        } catch (ClassCastException e) {
+            throw new ClassCastException("A data de aquisição é inválida.");
+        }
+
+        // Validação das horas de uso
+        float horas;
+        try {
+            horas = Float.parseFloat(TextHoras.getText());
+        } catch (NumberFormatException e) {
+            throw new NumberFormatException("As horas de uso devem ser um número válido.");
+        }
+
+        // Validação da localização
+        if (TextLocal.getText().isEmpty()) throw new IllegalArgumentException("A localização do dispositivo não pode estar vazia.");
+
+        // Validação do estado
+        Estado estado;
+
+        String selectedEstado = BoxEstado.getSelectedItem().toString().toLowerCase(); // Converte para minúsculas
+        switch (selectedEstado) {
+        case "ativo" -> estado = Estado.ATIVO; // Ajuste para seu enum se necessário
+        case "inativo" -> estado = Estado.INATIVO; // Ajuste para seu enum se necessário
+        default -> throw new IllegalArgumentException("Por favor, selecione o estado do dispositivo.");
+        }
+
+        // Coleta das observações
+        String obs = ((JTextArea) ScrollObs.getViewport().getView()).getText();
+        if (obs.length() > 200) throw new IllegalArgumentException("As observações são muito longas.");
+
+        // Criação do objeto Dispositivo e envio para o banco
+        Dispositivo dispositivo = new Dispositivo(TextTipo.getText(), TextDispositivo.getText(), potencia, voltagem, data, horas, TextLocal.getText(), estado, obs);
+        DispositivoController dispositivoController = new DispositivoController(ConnectionUtils.getConnection());
+        dispositivoController.adicionarDispositivo(dispositivo);
+
+        // Mensagem de sucesso
+        JOptionPane.showMessageDialog(this, "Dispositivo enviado com sucesso!");
+
     } catch (NumberFormatException e) {
-        throw new NumberFormatException("A potência deve ser um número inteiro válido.");
-    }
-
-    Voltagem voltagem;
-    try {
-        voltagem = Voltagem.valueOf(BoxVolts.getSelectedItem().toString());
-    } catch (IllegalArgumentException e) {
-        throw new IllegalArgumentException("Por favor, selecione uma voltagem válida.");
-    }
-
-    LocalDate data;
-    try {
-        Date date = (Date) SpinnerData.getValue();
-        data = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-    } catch (ClassCastException e) {
-        throw new ClassCastException("A data de aquisição é inválida.");
-    }
-
-    float horas;
-    try {
-        horas = Float.parseFloat(TextHoras.getText());
-    } catch (NumberFormatException e) {
-        throw new NumberFormatException("As horas de uso devem ser um número válido.");
-    }
-
-    if (TextLocal.getText().isEmpty()) throw new IllegalArgumentException("A localização do dispositivo não pode estar vazia.");
-
-    Estado estado;
-    try {
-        estado = Estado.valueOf(BoxEstado.getSelectedItem().toString());
-    } catch (IllegalArgumentException e) {
-        throw new IllegalArgumentException("Por favor, selecione o estado do dispositivo.");
-    }
-
-    // Coleta das observações
-    String obs = ((JTextArea) ScrollObs.getViewport().getView()).getText();
-    if (obs.length() > 200) throw new IllegalArgumentException("As observações são muito longas.");
-
-    // Criação do objeto Dispositivo e envio para o banco
-    Dispositivo dispositivo = new Dispositivo(TextTipo.getText(), TextDispositivo.getText(), potencia, voltagem, data, horas, TextLocal.getText(), estado, obs);
-    DispositivoController dispositivoController = new DispositivoController(ConnectionUtils.getConnection());
-    dispositivoController.adicionarDispositivo(dispositivo);
-
-    // Mensagem de sucesso
-    JOptionPane.showMessageDialog(this, "Dispositivo enviado com sucesso!");
-
-    } catch (NumberFormatException e) {
-    JOptionPane.showMessageDialog(this, "Erro: valor numérico inválido.");
+        JOptionPane.showMessageDialog(this, "Erro: valor numérico inválido.");
     } catch (IllegalArgumentException | ClassCastException e) {
-    JOptionPane.showMessageDialog(this, "Erro: valor inválido em um dos campos.");
+        JOptionPane.showMessageDialog(this, "Erro: valor inválido em um dos campos. " + e.getMessage());
     } catch (SQLException e) {
-    JOptionPane.showMessageDialog(this, "Erro ao conectar ao banco de dados: " + e.getMessage());
+        JOptionPane.showMessageDialog(this, "Erro ao conectar ao banco de dados: " + e.getMessage());
     } catch (Exception e) {
-    JOptionPane.showMessageDialog(this, "Erro inesperado: " + e.getMessage());
-    e.printStackTrace();
+        JOptionPane.showMessageDialog(this, "Erro inesperado: " + e.getMessage());
+        e.printStackTrace();
     }
        
     }//GEN-LAST:event_SubmitiBtnActionPerformed
@@ -388,6 +409,97 @@ public class MenuPrincipal extends javax.swing.JFrame {
     BoxEstado.setSelectedIndex(0); // Reseta o ComboBox para a primeira opção (Ativo)
     ScrollObs.setViewportView(new JTextArea()); // Limpa a área de observações
     }//GEN-LAST:event_BtnLimparActionPerformed
+    
+    // Método auxiliar que retorna uma lista de dispositivos do banco de dados
+   private void carregarDados() {
+    DefaultTableModel modelo = (DefaultTableModel) Table.getModel();
+    modelo.setRowCount(0); // Limpa a tabela antes de adicionar novos dados
+
+    Connection connection = null;
+    Statement statement = null;
+    ResultSet resultSet = null;
+
+    try {
+        connection = ConnectionUtils.getConnection();
+        statement = connection.createStatement();
+        resultSet = statement.executeQuery("SELECT * FROM dispositivos");
+
+        while (resultSet.next()) {
+            int id = resultSet.getInt("id");
+            String nome = resultSet.getString("nome");
+            String tipo = resultSet.getString("tipo");
+            int potencia = resultSet.getInt("potencia");
+            String voltagem = resultSet.getString("voltagem");
+            Date data = resultSet.getDate("data_aquisicao");
+            float horas = resultSet.getFloat("horas_uso_diarias");
+            String localizacao = resultSet.getString("localizacao");
+            String estado = resultSet.getString("estado");
+            String observacoes = resultSet.getString("obs");
+
+            modelo.addRow(new Object[]{id, nome, tipo, potencia, voltagem, data, horas, localizacao, estado, observacoes});
+        }
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(this, "Erro ao carregar dados: " + e.getMessage());
+    } finally {
+        // Fechando recursos para liberar a conexão
+        ConnectionUtils.closeConnection(connection);
+        try {
+            if (statement != null) statement.close();
+            if (resultSet != null) resultSet.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+}
+
+
+
+    /*private void carregarDados() {
+    DefaultTableModel modelo = (DefaultTableModel) Table.getModel(); // Obtém o modelo da tabela
+    modelo.setRowCount(0); // Limpa a tabela antes de adicionar novos dados
+
+    Connection connection = null; // Declare a conexão aqui
+    Statement statement = null; // Declare o statement aqui
+    ResultSet resultSet = null; // Declare o resultSet aqui
+
+      try {
+        connection = ConnectionUtils.getConnection(); // Obtém a conexão do banco de dados
+        if (connection == null) {
+            JOptionPane.showMessageDialog(this, "Erro ao conectar ao banco de dados.");
+            return; // Retorna se a conexão não for estabelecida
+        }
+
+        statement = connection.createStatement(); // Cria um Statement para executar consultas
+        resultSet = statement.executeQuery("SELECT * FROM dispositivos"); // Executa a consulta
+
+        while (resultSet.next()) {
+            int id = resultSet.getInt("id"); // Altere para o nome correto da coluna
+            String nome = resultSet.getString("nome"); // Altere para o nome correto da coluna
+            String tipo = resultSet.getString("tipo"); // Altere para o nome correto da coluna
+            int potencia = resultSet.getInt("potencia"); // Altere para o nome correto da coluna
+            String voltagem = resultSet.getString("voltagem"); // Altere para o nome correto da coluna
+            Date data = resultSet.getDate("data_aquisicao"); // Altere para o nome correto da coluna
+            float horas = resultSet.getFloat("horas_uso_diarias"); // Altere para o nome correto da coluna
+            String localizacao = resultSet.getString("localizacao"); // Altere para o nome correto da coluna
+            String estado = resultSet.getString("estado"); // Altere para o nome correto da coluna
+            String observacoes = resultSet.getString("obs"); // Altere para o nome correto da coluna
+
+            // Adiciona os dados à tabela
+            modelo.addRow(new Object[]{id, nome, tipo, potencia, voltagem, data, horas, localizacao, estado, observacoes});
+        }
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(this, "Erro ao carregar dados: " + e.getMessage());
+    } finally {
+        // Certifique-se de fechar os recursos no bloco finally para evitar vazamentos
+        try {
+            if (resultSet != null) resultSet.close();
+            if (statement != null) statement.close();
+            if (connection != null) connection.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(this, "Erro ao fechar recursos: " + ex.getMessage());
+        }
+    }
+}/*
 
     /**
      * @param args the command line arguments
