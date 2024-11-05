@@ -24,5 +24,3 @@ O sistema também conta com funcionalidades para limpeza de campos, permitindo u
 * Linguagem: Java
 * Banco de Dados: MySQL
 * IDE: NetBeans
-
-## Funcionamento do Sistema
