@@ -1,4 +1,6 @@
-![](/img//youtube_profile_800x800-removebg-preview.png.png) 
+<p align="center">
+  <img src="/img/gmail_profile_400x400-removebg-preview.png" alt="">
+</p> 
 
 # Usina de Projetos Experimentais 2 - Grupo ODSCoders
 Neste repositório você encontrará o projeto do 2º semestre da disciplina de UPX - 2 (Usina de Projetos Experimentais 2) do grupo ODSCoders da turma A de Análise e Desenvolvimento de Sistemas EAD do Centro Universitário Facens.
