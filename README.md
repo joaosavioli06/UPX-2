@@ -19,12 +19,12 @@ O projeto tem como objetivo desenvolver um sistema de gerenciamento de dispositi
 
 Para desenvolver a aplicação, utilizamos a linguagem **Java** em conjunto com o banco de dados **MySQL**, além de uma interface gráfica intuitiva criada no **NetBeans**. A interface permite o cadastro de dispositivos com atributos detalhados, como tipo, potência, voltagem, horas de uso, localização e data de aquisição, além de fornecer campos para observações adicionais e estado de funcionamento. Cada dispositivo registrado é exibido em uma tabela, facilitando a visualização e o gerenciamento.
 
-No código, foi aplicado uma estrutura de controle MVC (Model-View-Controller) para organizar as operações de banco de dados, a lógica de negócios e a exibição dos dados na interface. Utilizamos a biblioteca DefaultTableModel para atualizar a tabela em tempo real sempre que um dispositivo é adicionado ou alterado. A conexão com o banco de dados é gerida pela classe ConnectionUtils, que garante o funcionamento contínuo da aplicação ao manter uma conexão ativa e reutilizável.
+No código, foi aplicado uma estrutura de controle **MVC (Model-View-Controller)** para organizar as operações de banco de dados, a lógica de negócios e a exibição dos dados na interface. Utilizamos a biblioteca **DefaultTableModel** para atualizar a tabela em tempo real sempre que um dispositivo é adicionado ou alterado. A conexão com o banco de dados é gerida pela classe **ConnectionUtils**, que garante o funcionamento contínuo da aplicação ao manter uma conexão ativa e reutilizável.
 
 O sistema também conta com funcionalidades para limpeza de campos, permitindo uma experiência de cadastro mais dinâmica. O projeto é de uso exclusivo para desktop e foi desenvolvido considerando-se a escalabilidade e a possibilidade de integração com outras plataformas de gerenciamento de energia no futuro.
 
 ## Tecnologias Utilizadas
 
-* Linguagem: Java
-* Banco de Dados: MySQL
-* IDE: NetBeans
+* **Linguagem**: Java
+* **Banco de Dados**: MySQL
+* **IDE**: NetBeans
