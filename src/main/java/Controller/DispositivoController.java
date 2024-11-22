@@ -13,6 +13,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DecimalFormat;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import java.time.LocalDate;
@@ -27,7 +28,7 @@ public class DispositivoController {
     private Connection connection;
     
     public DispositivoController(Connection connection) {
-        this.connection = ConnectionUtils.getConnection(); // Antes: this.connection = connection; || import connection.ConnectionUtils;
+        this.connection = connection; // Antes: this.connection = connection; || import connection.ConnectionUtils;
     }
     
      public void adicionarDispositivo(Dispositivo dispositivo) throws SQLException {
@@ -47,6 +48,37 @@ public class DispositivoController {
         }
      }
      
+       public boolean isNomeDuplicado(String nomeDispositivo) throws SQLException {
+        String sql = "SELECT COUNT(*) FROM dispositivos WHERE nome = ?";
+        System.out.println("Verificando duplicidade para: " + nomeDispositivo); // Depuração
+
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+        stmt.setString(1, nomeDispositivo);
+        ResultSet rs = stmt.executeQuery();
+        
+        if (rs.next()) {
+            int count = rs.getInt(1);
+            System.out.println("Contagem de dispositivos com esse nome: " + count); // Depuração
+            return count > 0;
+            }
+        }
+            return false;
+}
+
+           // Método que retorna as horas formatadas
+    public String formatarHoras(float horas) {
+        DecimalFormat df = new DecimalFormat();
+        
+        // Se for inteiro, exibe sem a parte decimal
+        if (horas == (int) horas) {
+            df.applyPattern("#"); // Padrão para números inteiros
+        } else {
+            df.applyPattern("#.00"); // Padrão para números com 2 casas decimais
+        }
+        
+        return df.format(horas);
+    }
+      
         public List<Dispositivo> listarDispositivos() throws SQLException {
         List<Dispositivo> dispositivos = new ArrayList<>();
         String sql = "SELECT * FROM dispositivos"; // Consulta SQL para buscar todos os dispositivos
@@ -65,6 +97,9 @@ public class DispositivoController {
                 dispositivo.setLocalizacao(rs.getString("localizacao"));
                 dispositivo.setEstado(Estado.valueOf(rs.getString("estado"))); // Altere se o enum tiver nomes diferentes
                 dispositivo.setObs(rs.getString("obs"));
+                
+                String horasFormatadas = formatarHoras(dispositivo.getHoras());
+                dispositivo.setHorasFormatadas(horasFormatadas); // Aqui você teria que criar o campo 'horasFormatadas' em Dispositivo
                 
                 dispositivos.add(dispositivo); // Adiciona o dispositivo à lista
             }

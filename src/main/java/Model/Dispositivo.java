@@ -22,6 +22,7 @@ public class Dispositivo {
     private Voltagem voltagem; // Tipo enum
     private LocalDate data; // Data de aquisição
     private float horas; // Horas de uso diárias estimadas (float)
+    private String horasFormatadas;
     private String localizacao; // Localização (cômodo)
     private Estado estado; // Tipo enum 
     private String obs; // 
@@ -142,6 +143,14 @@ public class Dispositivo {
 
     public void setHoras(float horas) {
         this.horas = horas;
+    }
+    
+    public String getHorasFormatadas() {
+        return horasFormatadas;
+    }
+    
+     public void setHorasFormatadas(String horasFormatadas) {
+        this.horasFormatadas = horasFormatadas;
     }
 
     public String getLocalizacao() {
