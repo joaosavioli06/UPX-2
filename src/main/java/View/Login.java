@@ -37,6 +37,7 @@ public class Login extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        BtnMostrarSenha = new javax.swing.JButton();
         TextUsuario = new javax.swing.JTextField();
         SenhaUsuario = new javax.swing.JPasswordField();
         BtnCadastrar = new javax.swing.JButton();
@@ -48,6 +49,14 @@ public class Login extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        BtnMostrarSenha.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/icone_olho.png"))); // NOI18N
+        BtnMostrarSenha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnMostrarSenhaActionPerformed(evt);
+            }
+        });
+        getContentPane().add(BtnMostrarSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 470, 30, 30));
 
         TextUsuario.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         TextUsuario.addActionListener(new java.awt.event.ActionListener() {
@@ -138,6 +147,16 @@ public class Login extends javax.swing.JFrame {
     controller.cadastrarUsuario();
     }//GEN-LAST:event_BtnCadastrarActionPerformed
 
+    private void BtnMostrarSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnMostrarSenhaActionPerformed
+      
+    if (SenhaUsuario.getEchoChar() == '*') {
+        SenhaUsuario.setEchoChar((char) 0);  // Torna a senha visível
+    } else {
+        SenhaUsuario.setEchoChar('*');       // Oculta a senha novamente
+    }
+
+    }//GEN-LAST:event_BtnMostrarSenhaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -176,6 +195,7 @@ public class Login extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnCadastrar;
     private javax.swing.JButton BtnLogar;
+    private javax.swing.JButton BtnMostrarSenha;
     private javax.swing.JLabel LabelFundo;
     private javax.swing.JLabel LabelSenha;
     private javax.swing.JLabel LabelUsuario;
