@@ -64,7 +64,7 @@ public class DispositivoController {
         }
             return false;
 }
-
+       
            // Método que retorna as horas formatadas
     public String formatarHoras(float horas) {
         DecimalFormat df = new DecimalFormat();

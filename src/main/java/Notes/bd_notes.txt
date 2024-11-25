@@ -4,7 +4,6 @@ CREATE TABLE usuarios (
     id INT AUTO_INCREMENT PRIMARY KEY,       -- Identificador único para cada usuário (Geração de futuros id's de forma automática)
     nome VARCHAR(100) NOT NULL,              -- Nome de usuário (usado para login)
     senha_hash VARCHAR(256) NOT NULL,        -- Hash da senha para autenticação (pela senha criptografada ser muito grande, por isso o campo 256)
-    salt VARCHAR(50) NOT NULL                -- Salt usado para aumentar a segurança do hash
 );
 
 // VARCHAR = tipo de dado SQL para cadeia de caracteres, definindo o tamanho máximo de caracteres
@@ -25,9 +24,22 @@ CREATE TABLE dispositivos (
 
 // ENUM = usado para definir uma coluna com um conjunto específico de valores possíveis, permitindo que você escolha uma opção dentro de uma lista predefinida.
 
-# Trabalhando em Conjunto no Banco de Dados
+# Comandos para banco de dados
 
-PlanetScale para utilização do MySQL na cloud
-* Voltado para bancos de dados compatíveis com MySQL.
-* No plano gratuito, oferece até 5 GB de armazenamento, sendo uma boa opção para protótipos e desenvolvimento.
-* Boa integração com GitHub, útil para controle de versão do esquema de dados.
+Exclusão
+
+DELETE FROM dispositivos WHERE id IN ();
+DELETE FROM usuarios WHERE id IN ();
+
+Incremento
+
+ALTER TABLE dispositivos AUTO_INCREMENT = 1;
+ALTER TABLE usuarios AUTO_INCREMENT = 1;
+
+Impedir duplicação
+
+ALTER TABLE usuarios 
+ADD CONSTRAINT UNIQUE (nome);
+
+ALTER TABLE dispositivos
+ADD CONSTRAINT UNIQUE (nome);

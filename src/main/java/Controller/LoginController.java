@@ -78,9 +78,13 @@ public class LoginController {
             statement.executeUpdate();
             view.exibeMensagem("Usuário cadastrado com sucesso!");
         } catch (SQLException e) {
+           if (e.getSQLState().equals("23000") && e.getMessage().contains("Duplicate entry")) {
+            view.exibeMensagem("Erro: Usuário já cadastrado. Escolha outro nome.");
+        } else {
             e.printStackTrace();
             view.exibeMensagem("Erro ao cadastrar usuário: " + e.getMessage());
         }
+    }
     }
 
     public boolean verificarUsuarioNoBanco(String nome, String senha) {
