@@ -16,7 +16,7 @@ import java.sql.SQLException;
 public class ConnectionUtils {
     private static final String URL = "jdbc:mysql://localhost:3306/projectdb";
     private static final String USER = "root";
-    private static final String PASSWORD = ""; // You thought I was gonna leave the password here?
+    private static final String PASSWORD = ""; 
 
     // Método para obter uma nova conexão sempre que for chamado
     public static Connection getConnection() {
